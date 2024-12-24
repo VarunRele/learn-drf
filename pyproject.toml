@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fuel-drf"
+version = "0.1.0"
+description = "Remaking fuel log app in DRF"
+authors = ["Varun Rele"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "^4"
+django-rest-framework = "^0.1.0"
+djangorestframework-simplejwt = "^5.3.1"
+djoser = "^2.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
