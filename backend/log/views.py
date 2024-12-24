@@ -6,7 +6,6 @@ from .serializers import LogSerializer, LogEditSerializer
 from django.contrib.auth.models import User
 from .permissions import IsOwnerOrAdmin
 
-
 class LogListCreateView(generics.ListCreateAPIView):
     queryset = Log.objects.all()
     serializer_class = LogSerializer
