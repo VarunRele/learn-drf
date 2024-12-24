@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from vehicle.models import Vehicle
 
 class Log(models.Model):
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -11,7 +12,7 @@ class Log(models.Model):
         ), default='Petrol')
     odo = models.DecimalField("Kilometers ran", max_digits=15, decimal_places=2)
     location = models.CharField(max_length=100, blank=True, null=True)
-    # TODO: Vehicle to be add.
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True, blank=True)
 
     @property
     def unit(self):

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.request import Request
 from rest_framework import generics
 from .models import Log
-from .serializers import LogSerializer
+from .serializers import LogSerializer, LogEditSerializer
 from django.contrib.auth.models import User
 from .permissions import IsOwnerOrAdmin
 
@@ -25,6 +25,6 @@ class LogListCreateView(generics.ListCreateAPIView):
 
 class LogRetriveUpdateDestoryView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Log.objects.all()
-    serializer_class = LogSerializer
+    serializer_class = LogEditSerializer
     permission_classes = [IsOwnerOrAdmin]
 
