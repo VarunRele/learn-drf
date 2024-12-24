@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'vehicle',
     'rest_framework',
     'rest_framework_simplejwt',
-    'djoser'
+    'djoser',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -142,5 +143,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Log Project - Learning',
+    'DESCRIPTION': 'Learning DRF and all other libraries',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
