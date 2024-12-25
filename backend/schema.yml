@@ -532,6 +532,18 @@ paths:
   /log/:
     get:
       operationId: log_list
+      parameters:
+      - in: query
+        name: email
+        schema:
+          type: string
+          format: email
+        required: true
+      - in: query
+        name: username
+        schema:
+          type: string
+        required: true
       tags:
       - log
       security:
@@ -829,6 +841,16 @@ components:
       required:
       - token
       - uid
+    CustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+      required:
+      - id
+      - username
     FuelTypeEnum:
       enum:
       - Petrol
@@ -845,7 +867,7 @@ components:
           readOnly: true
         owner:
           allOf:
-          - $ref: '#/components/schemas/User'
+          - $ref: '#/components/schemas/CustomUser'
           readOnly: true
         price:
           type: string
@@ -879,6 +901,10 @@ components:
           type: integer
           writeOnly: true
           nullable: true
+        rud_url:
+          type: string
+          format: uri
+          readOnly: true
       required:
       - id
       - odo
@@ -886,6 +912,7 @@ components:
       - price
       - quantity
       - quantity_unit
+      - rud_url
       - vehicle_info
     LogEdit:
       type: object
@@ -895,7 +922,7 @@ components:
           readOnly: true
         owner:
           allOf:
-          - $ref: '#/components/schemas/User'
+          - $ref: '#/components/schemas/CustomUser'
           readOnly: true
         price:
           type: string
@@ -928,6 +955,10 @@ components:
           type: integer
           writeOnly: true
           nullable: true
+        rud_url:
+          type: string
+          format: uri
+          readOnly: true
       required:
       - id
       - odo
@@ -935,6 +966,7 @@ components:
       - price
       - quantity
       - quantity_unit
+      - rud_url
       - vehicle_info
     PasswordResetConfirm:
       type: object
@@ -957,7 +989,7 @@ components:
           readOnly: true
         owner:
           allOf:
-          - $ref: '#/components/schemas/User'
+          - $ref: '#/components/schemas/CustomUser'
           readOnly: true
         price:
           type: string
@@ -990,6 +1022,10 @@ components:
           type: integer
           writeOnly: true
           nullable: true
+        rud_url:
+          type: string
+          format: uri
+          readOnly: true
     PatchedUser:
       type: object
       properties:

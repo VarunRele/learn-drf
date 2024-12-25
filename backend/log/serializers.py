@@ -4,18 +4,26 @@ from django.contrib.auth.models import User
 from vehicle.serializers import VehicleSerializer
 from vehicle.models import Vehicle
 from icecream import ic
+from drf_spectacular.utils import extend_schema_field
 
-class UserSerializer(serializers.Serializer):
+
+class QueryParamSerializer(serializers.Serializer):
+    username = serializers.CharField(required=False)
+    email = serializers.EmailField(required=False)
+
+class CustomUserSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     username =serializers.CharField()
 
 
 class LogSerializer(serializers.ModelSerializer):
-    owner = UserSerializer(read_only=True)
+    owner = CustomUserSerializer(read_only=True)
     quantity_unit = serializers.SerializerMethodField(read_only=True)
     quantity = serializers.DecimalField(write_only=True, max_digits=15, decimal_places=2)
     vehicle_info = VehicleSerializer(read_only=True, source='vehicle')
+    rud_url = serializers.HyperlinkedIdentityField(view_name='log:detail-update-destory', read_only=True)
 
+    @extend_schema_field(str)
     def get_quantity_unit(self, obj: Log):
         if not hasattr(obj, "id"):
             return None
@@ -24,6 +32,11 @@ class LogSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict):
         car: Vehicle | None = attrs.get('vehicle')
         fuel_type: str = attrs.get('fuel_type')
+        price: float = float(attrs.get('price'))
+        quantity: float = float(attrs.get('quantity'))
+        odo: float = float(attrs.get('odo'))
+        if price <= 0.0 or quantity <= 0.0 or odo <= 0.0:
+            raise serializers.ValidationError("Price/Quantity/Odo can't be less than Zero")
         if car is None:
             return attrs
         if car.vehicle_type == 'Bike' and fuel_type == 'CNG':
@@ -42,7 +55,8 @@ class LogSerializer(serializers.ModelSerializer):
             'odo',
             'location',
             'vehicle_info',
-            'vehicle'
+            'vehicle',
+            'rud_url'
         ]
         extra_kwargs = {
             'vehicle': {'write_only': True},
