@@ -38,7 +38,7 @@ class LogListCreateView(generics.ListCreateAPIView):
         if new_odo is None:
             raise exceptions.ValidationError("Odo value can't be none.")
         last_odo = Log.objects.last()
-        if float(new_odo) <= float(last_odo.odo):
+        if last_odo is not None and float(new_odo) <= float(last_odo.odo):
             raise exceptions.ValidationError("Odo value can't be less than previous value")
         serializer.save(owner=self.request.user)
 
