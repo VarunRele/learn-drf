@@ -564,6 +564,20 @@ files = [
 Pillow = ">=9.0.0"
 
 [[package]]
+name = "django-constance"
+version = "4.1.3"
+description = "Django live settings with pluggable backends, including Redis."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "django_constance-4.1.3-py3-none-any.whl", hash = "sha256:e5e05acbf329c3addec141f3911989d58c423ebc3bc92e1359f9c1dd77e08e95"},
+    {file = "django_constance-4.1.3.tar.gz", hash = "sha256:e8b619ebeab75665d279299cce4bbebbcb0a73caf3539edcd788f2d2275c21a1"},
+]
+
+[package.extras]
+redis = ["redis"]
+
+[[package]]
 name = "django-rest-framework"
 version = "0.1.0"
 description = "alias."
@@ -1440,4 +1454,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "73deec3f5988fef4f57dad55f0438156165b7bb7d1a53af7172ae98f2f2891fd"
+content-hash = "4d08acdf94798fffed483ff1c76054dc7ae3f24a9286f98a473e7447cc454337"

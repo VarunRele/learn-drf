@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+from collections import OrderedDict
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'constance',
+    "constance.backends.database",
     'log',
     'vehicle',
     'rest_framework',
@@ -177,3 +180,29 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = 'Asia/Kolkata'
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'yes_no_null_select': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': ((None, "-----"), ("yes", "Yes"), ("no", "No"))
+    }],
+}
+
+# CONSTANCE_CONFIG = {
+#     'THE_ANSWER': ('42', 'Answer to the Ultimate Question of Life, '
+#                        'The Universe, and Everything', str),
+#     'MY_SELECT_KEY': ('yes', 'select yes or no', 'yes_no_null_select'),
+# }
+
+CONSTANCE_CONFIG = OrderedDict([
+    ('SITE_NAME', ('My Title', 'Website title')),
+    ('SITE_DESCRIPTION', ('', 'Website description')),
+    ('THEME', ('light-blue', 'Website theme')),
+])
+
+CONSTANCE_CONFIG_FIELDSETS = {
+    'General Options': ('SITE_NAME', 'SITE_DESCRIPTION'),
+    'Theme Options': ('THEME',),
+}

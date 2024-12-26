@@ -9,6 +9,7 @@ from .permissions import IsOwnerOrAdmin
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 from .tasks import my_task
+from constance import config
 
 
 @extend_schema_view(
@@ -39,6 +40,7 @@ class LogListCreateView(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
     def get_queryset(self):
+        print(config.SITE_NAME)
         serializer = QueryParamSerializer(data=self.request.GET)
         reg_number = None
         if serializer.is_valid(raise_exception=True):
