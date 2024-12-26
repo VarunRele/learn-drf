@@ -5,11 +5,11 @@ from vehicle.serializers import VehicleSerializer
 from vehicle.models import Vehicle
 from icecream import ic
 from drf_spectacular.utils import extend_schema_field
+from rest_framework import exceptions
 
 
 class QueryParamSerializer(serializers.Serializer):
-    username = serializers.CharField(required=False)
-    email = serializers.EmailField(required=False)
+    reg_number = serializers.CharField(required=False)
 
 class CustomUserSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -36,11 +36,13 @@ class LogSerializer(serializers.ModelSerializer):
         quantity: float = float(attrs.get('quantity'))
         odo: float = float(attrs.get('odo'))
         if price <= 0.0 or quantity <= 0.0 or odo <= 0.0:
-            raise serializers.ValidationError("Price/Quantity/Odo can't be less than Zero")
+            # raise serializers.ValidationError("Price/Quantity/Odo can't be less than Zero")
+            raise exceptions.NotAcceptable({"error": "Price/Quantity/Odo can't be less than Zero"})
         if car is None:
             return attrs
         if car.vehicle_type == 'Bike' and fuel_type == 'CNG':
-            raise serializers.ValidationError("Bike can't be of type CNG")
+            # raise serializers.ValidationError("Bike can't be of type CNG")
+            raise exceptions.NotAcceptable({"error": "Bike can't be of type CNG"})
         return attrs
     
     class Meta:

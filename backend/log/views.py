@@ -12,6 +12,7 @@ from drf_spectacular.types import OpenApiTypes
 
 @extend_schema_view(
     get = extend_schema(
+        description="Get all the logs. If reg number is specified then output is filtered.",
         parameters=[
             OpenApiParameter(
                 "username", str, required=False
@@ -22,11 +23,7 @@ from drf_spectacular.types import OpenApiTypes
         ]
     ),
     post = extend_schema(
-        examples=[
-            OpenApiExample(
-                "Log",
-            )
-        ]
+        description="Create log."    
     )
 )
 class LogListCreateView(generics.ListCreateAPIView):
@@ -35,18 +32,22 @@ class LogListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer: LogSerializer):
         new_odo = serializer.validated_data.get('odo')
-        if new_odo is None:
-            raise exceptions.ValidationError("Odo value can't be none.")
-        last_odo = Log.objects.last()
+        vehicle = serializer.validated_data.get('vehicle')
+        last_odo = Log.objects.filter(vehicle=vehicle).last()
         if last_odo is not None and float(new_odo) <= float(last_odo.odo):
-            raise exceptions.ValidationError("Odo value can't be less than previous value")
+            raise exceptions.ValidationError({"odo": 
+                                              ["Odo value can't be less than previous value"]})
         serializer.save(owner=self.request.user)
 
     def get_queryset(self):
         serializer = QueryParamSerializer(data=self.request.GET)
-        if not serializer.is_valid(raise_exception=True):
-            print(serializer.validated_data)
-        return super().get_queryset()
+        reg_number = None
+        if serializer.is_valid(raise_exception=True):
+            reg_number = serializer.validated_data.get('reg_number')
+        qs = super().get_queryset()
+        if reg_number:
+            qs = qs.filter(vehicle__reg_number__icontains=reg_number)
+        return qs
 
 
 class LogRetriveUpdateDestoryView(generics.RetrieveUpdateDestroyAPIView):
