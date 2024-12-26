@@ -15,10 +15,8 @@ from drf_spectacular.types import OpenApiTypes
         description="Get all the logs. If reg number is specified then output is filtered.",
         parameters=[
             OpenApiParameter(
-                "username", str, required=False
-            ),
-            OpenApiParameter(
-                "email", OpenApiTypes.EMAIL, required=False
+                "reg_number", str, required=False, 
+                description="Vehicle registration Number. Last four digits is also valid"
             )
         ]
     ),
