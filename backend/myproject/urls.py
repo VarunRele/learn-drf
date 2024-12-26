@@ -32,3 +32,5 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += [re_path(r'^i18n/', include('django.conf.urls.i18n'))]

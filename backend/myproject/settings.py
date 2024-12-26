@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'djoser',
-    'drf_spectacular'
+    'drf_spectacular',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -164,3 +166,14 @@ SPECTACULAR_SETTINGS = {
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+CELERY_ENABLE_UTC = True
+CELERY_TIMEZONE = 'Asia/Kolkata'

@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from .permissions import IsOwnerOrAdmin
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
+from .tasks import my_task
 
 
 @extend_schema_view(
