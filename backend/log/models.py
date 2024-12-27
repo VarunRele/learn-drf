@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from vehicle.models import Vehicle
 
 class Log(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    owner = models.ForeignKey(User, related_name="logs", on_delete=models.SET_NULL, null=True, blank=True)
     price = models.DecimalField("Fuel price", max_digits=15, decimal_places=2)
     quantity = models.DecimalField(max_digits=15, decimal_places=2)
     fuel_type = models.CharField(max_length=10, choices=(

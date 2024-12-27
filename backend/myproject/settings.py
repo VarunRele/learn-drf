@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'djoser',
     'drf_spectacular',
-    'django_celery_beat'
+    'django_celery_beat',
+    # "django.contrib.staticfiles", # Required for GraphiQL
+    "graphene_django"
 ]
 
 MIDDLEWARE = [
@@ -205,4 +207,8 @@ CONSTANCE_CONFIG = OrderedDict([
 CONSTANCE_CONFIG_FIELDSETS = {
     'General Options': ('SITE_NAME', 'SITE_DESCRIPTION'),
     'Theme Options': ('THEME',),
+}
+
+GRAPHENE = {
+    "SCHEMA": "log.schema.schema"
 }
