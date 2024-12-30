@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { User } from './models/user';
+
+@Component({
+  selector: 'app-root',
+  imports: [UserProfileComponent, UserProfileComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'first-app';
+  users = [
+    {name: 'Vedant', status: true, salary: 100},
+    // {name: 'Adu', status: false, salary: 200},
+    // {name: 'Shweta', status: false, salary: 400},
+  ]
+  salaryUpdate(e: User) {
+    const index = this.users.findIndex(user => user.name == e.name)
+    this.users[index].salary += 20
+  }
+}

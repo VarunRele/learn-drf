@@ -1,0 +1,21 @@
+<p>user-profile works!</p>
+<h4 [style.backgroundColor]="bgColor">
+    {{name}}
+    {{salary | currency:"INR"}}
+    {{status}}
+    {{phoneno | countryCode:"USA"}}
+</h4>
+<button [disabled]="isDisabled" (click)="salaryUpdate()">Click</button>
+<h2>{{ inputVal }}</h2>
+<!-- <input type="text" [value]="inputVal" (input)="update($event)" > -->
+<input type="text" [(ngModel)]="inputVal">
+
+<!-- <div>
+    @for (user of users; track user.name) {
+        @if (user.salary >= 200) {
+            <h4>{{user.name}} salary - {{user.salary}}. {{user.status?"Hello":"Bye"}}</h4>
+        }@else {
+            <h4>{{user.name}} salary - HIDDEN. {{user.status?"Hello":"Bye"}}</h4>
+        }
+    }
+</div> -->
