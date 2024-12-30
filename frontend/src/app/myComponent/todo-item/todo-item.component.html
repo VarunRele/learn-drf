@@ -1,5 +1,9 @@
 <div class="my-3">
-    <p>{{ toda.title }}</p>
+    <p [ngClass]="{'strike': !toda.active}">{{ toda.title }}</p>
     <p>{{ toda.desc }}</p>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1{{i}}" [checked]="!toda.active" (click)="onCheckboxClick(toda)">
+        <label class="form-check-label" for="exampleCheck1{{i}}" >Done</label>
+      </div>
     <button class="btn btn-danger" (click)="onClick()">Delete</button>
 </div>

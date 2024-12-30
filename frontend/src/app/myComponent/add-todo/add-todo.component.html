@@ -1,6 +1,6 @@
 <div class="my-3">
     <h3>add</h3>
-    <form (submit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="exampleInputEmail1">Todo</label>
           <input type="text" [(ngModel)]="title" class="form-control" name="exampleInputEmail1" aria-describedby="emailHelp" placeholder="todo">

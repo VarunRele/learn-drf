@@ -1,4 +1,7 @@
-<app-add-todo></app-add-todo>
-<div *ngFor="let todo of todos">
-    <app-todo-item [toda]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
-</div>
+<app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+<div *ngIf="this.todos.length===0; else elseBlock">Not content</div>
+<ng-template #elseBlock>
+    <div *ngFor="let todo of todos; index as i">
+        <app-todo-item [toda]="todo" [i]="i" (todoDelete)="deleteTodo($event)" (todoCheck)="checkTodo($event)"></app-todo-item>
+    </div>
+</ng-template>

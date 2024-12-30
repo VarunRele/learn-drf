@@ -11,8 +11,14 @@ import { Todo } from '../../todo';
 export class AddTodoComponent {
   title!: String
   desc!: String
-  @Output todoAdd: EventEmitter<Todo> = new EventEmitter()
+  @Output() todoAdd: EventEmitter<Todo> = new EventEmitter()
   onSubmit() {
-    console.log(this.title)
+    const todo: Todo = {
+      sno: 8,
+      title: this.title,
+      desc: this.desc,
+      active: true
+    }
+    this.todoAdd.emit(todo)
   }
 }
