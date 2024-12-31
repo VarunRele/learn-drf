@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { CountryCodePipe } from '../../pipes/country-code.pipe';
+import { HighlightDirective } from '../../directive/highlight.directive';
 
 function UpdateName(value: string){
   return "Hi " + value
@@ -10,7 +11,7 @@ function UpdateName(value: string){
 
 @Component({
   selector: 'app-user-profile',
-  imports: [FormsModule, CommonModule, CountryCodePipe],
+  imports: [FormsModule, CommonModule, CountryCodePipe, HighlightDirective],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })

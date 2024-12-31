@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { User } from './models/user';
+import { JokesComponent } from "./components/jokes/jokes.component";
 
 @Component({
   selector: 'app-root',
-  imports: [UserProfileComponent, UserProfileComponent],
+  imports: [JokesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
