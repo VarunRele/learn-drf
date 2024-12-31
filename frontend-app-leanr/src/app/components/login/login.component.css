@@ -1,0 +1,80 @@
+/* Container for the form */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Heading styles */
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input fields styles */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Error messages styles */
+.red-text {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+.btn-green {
+    display: inline-block;
+    width: 48%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-red {
+    display: inline-block;
+    width: 48%;
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Add some spacing between buttons */
+.btn-green,
+.btn-red {
+    margin-top: 10px;
+}
+
+/* Button hover effects */
+.btn-green:hover {
+    background-color: #218838;
+}
+
+.btn-red:hover {
+    background-color: #c82333;
+}
+
+.btn-green:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}

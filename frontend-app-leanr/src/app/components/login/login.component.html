@@ -1,1 +1,9 @@
-<p>login works!</p>
+<form action="#" class="container" [formGroup]="LoginForm">
+    <h3>Login</h3>
+    <input type="email" placeholder="email" [formControl]="email" />
+    <h5 class="red-text" [hidden]="email.valid || email.untouched">Email invalid</h5>
+    <input type="password" placeholder="password" [formControl]="password" />
+    <h5 class="red-text" [hidden]="password.valid || password.untouched">Password invalid</h5>
+    <button class="btn-green" (click)="login()" [disabled]="LoginForm.invalid">Login</button>
+    <button class="btn-red" (click)="reset()">Reset</button>
+</form>
