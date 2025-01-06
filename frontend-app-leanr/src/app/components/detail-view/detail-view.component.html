@@ -1,1 +1,39 @@
-<p>detail-view works!</p>
+<div class="detail-container" *ngIf="log">
+    <h1>Vehicle Log Details</h1>
+    <div class="detail-row">
+        <span class="detail-label">Fuel Type:</span>
+        <span class="detail-value">{{ log.fuel_type }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">ID:</span>
+        <span class="detail-value">{{ log.id }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Location:</span>
+        <span class="detail-value">{{ log.location }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Odometer:</span>
+        <span class="detail-value">{{ log.odo }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Owner:</span>
+        <span class="detail-value">{{ log.owner?.username }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Price:</span>
+        <span class="detail-value">{{ log.price }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Quantity:</span>
+        <span class="detail-value">{{ log.quantity_unit }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Vehicle:</span>
+        <span class="detail-value">{{ log.vehicle_info.reg_number }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Delete</span>
+        <span class="detail-value"><a (click)="onClick(log.rud_url)">Delete</a></span>
+    </div>
+</div>

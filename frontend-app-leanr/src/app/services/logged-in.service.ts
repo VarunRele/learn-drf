@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoggedInService {
-  private loggedIn: boolean = false
+  private loggedIn: boolean = true
   setLoggedIn(value: boolean) {
     this.loggedIn = value
   }

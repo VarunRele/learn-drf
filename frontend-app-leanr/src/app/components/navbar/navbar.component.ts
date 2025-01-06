@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { RestApiService } from '../../services/rest-api.service';
 import { LoggedInService } from '../../services/logged-in.service';
 
@@ -10,5 +10,9 @@ import { LoggedInService } from '../../services/logged-in.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(public loggedIn: LoggedInService) {}
+  constructor(public loggedIn: LoggedInService, public api: RestApiService, private router: Router) {}
+  logout() {
+    this.api.logout()
+    this.router.navigate(['/login'])
+  }
 }

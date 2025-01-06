@@ -42,4 +42,8 @@ export class RestApiService {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
   }
+
+  deleteLog(url: string) {
+    return this.request.delete(url)
+  }
 }
