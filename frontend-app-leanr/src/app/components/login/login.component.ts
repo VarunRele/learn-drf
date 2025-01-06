@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RestApiService } from '../../services/rest-api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { token } from '../../types/createUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { token } from '../../types/createUser';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private http: RestApiService) {}
+  constructor(private http: RestApiService, private router: Router) {}
   email = new FormControl("", [
     Validators.required,
   ])
@@ -34,6 +35,7 @@ export class LoginComponent {
         next: data => {
           localStorage.setItem('access_token', data.access)
           localStorage.setItem('refresh_token', data.refresh)
+          this.router.navigate(['/log'])
         },
         error: (err: HttpErrorResponse) => console.log(err.error)
       })

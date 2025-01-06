@@ -1,0 +1,26 @@
+<table>
+    <tr>
+        <th>id</th>
+        <th>owner</th>
+        <th>price</th>
+        <th>Quantity</th>
+        <th>Fuel type</th>
+        <th>odo</th>
+        <th>location</th>
+        <th>vehicle</th>
+        <th>View</th>
+    </tr>
+    @for (item of data; track $index) {
+        <tr>
+            <td>{{$index + 1}}</td>
+            <td>{{item.owner?.username}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity_unit}}</td>
+            <td>{{item.fuel_type}}</td>
+            <td>{{item.odo}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.vehicle_info.reg_number}}</td>
+            <td><button [routerLink]="['/log', item.id]">View</button></td>
+        </tr>
+    }
+</table>

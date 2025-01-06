@@ -2,10 +2,15 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FrontPageComponent } from './components/front-page/front-page.component';
+import { DetailViewComponent } from './components/detail-view/detail-view.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'signup', loadChildren: () => import('./components/signup/signup.component').then(m => m.SignupComponent) },
+    { path: 'signup', loadComponent: () => import('./components/signup/signup.component').then(m => m.SignupComponent) },
+    {path: 'log', component: FrontPageComponent},
+    {path: 'log/:id', component:DetailViewComponent},
     {path: '', redirectTo: '/login', pathMatch: 'full'},
-    {path: '**', component: NotFoundComponent}
+    {path: 'not-found', component:NotFoundComponent},
+    {path: '**', redirectTo: '/not-found'}
 ];

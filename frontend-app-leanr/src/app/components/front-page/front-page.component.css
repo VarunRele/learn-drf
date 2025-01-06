@@ -1,0 +1,74 @@
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Table Header Styles */
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Header Row Background */
+th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Odd Row Background */
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Even Row Background */
+tr:nth-child(even) {
+    background-color: #fff;
+}
+
+/* Hover Effect */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* First Column Styling */
+td:first-child {
+    font-weight: bold;
+}
+
+/* Button Styles */
+button {
+    padding: 8px 16px;
+    margin: 4px 0;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    table, th, td {
+        display: block;
+        width: 100%;
+    }
+    th, td {
+        box-sizing: border-box;
+    }
+    tr {
+        margin-bottom: 10px;
+    }
+    tr:hover {
+        background-color: transparent;
+    }
+}

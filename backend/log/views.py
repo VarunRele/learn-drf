@@ -40,7 +40,6 @@ class LogListCreateView(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
     def get_queryset(self):
-        print(config.SITE_NAME)
         serializer = QueryParamSerializer(data=self.request.GET)
         reg_number = None
         if serializer.is_valid(raise_exception=True):
