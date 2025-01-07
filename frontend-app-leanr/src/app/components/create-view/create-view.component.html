@@ -1,1 +1,30 @@
-<p>create-view works!</p>
+<div class="container">
+    <form [formGroup]="createGroup">
+        <h3>Create</h3>
+        <label for="fuel_price">Price</label>
+        <input type="number" name="fuel_price" [formControl]="fuel_price" min="0" id="fuel_price">
+        <h5 class="red-text" [hidden]="fuel_price.valid || fuel_price.untouched">Fuel price invalid</h5>
+        <label for="quantity">Quantity: </label>
+        <input type="number" name="quantity" [formControl]="quantity" min="0" id="quantity"/>
+        <h5 class="red-text" [hidden]="quantity.valid || quantity.untouched">Password invalid</h5>
+        <label for="fuel_type">Choose Fuel type:</label>
+        <select name="fuel_type" id="fuel_type" [formControl]="fuel_type" required>
+            <option value="Petrol" selected>Petrol</option>
+            <option value="CNG">CNG</option>
+        </select>
+        <label for="km">Kilometers ran: </label>
+        <input type="number" name="km" [formControl]="km" min="0" id="km">
+        <h5 class="red-text" [hidden]="km.valid || km.untouched">Km invalid</h5>
+        <label for="location">Location:</label>
+        <input type="text" name="location" [formControl]="location" id="location">
+        <label for="vehicle">Vehicle: </label>
+        <select name="vehicle" id="vehicle" [formControl]="vehicle">
+            <option [value]="null">-</option>
+            @for (car of vehicles; track $index) {
+                <option [value]="car.id">{{ car.reg_number }}</option>
+            }
+        </select>
+        <button class="btn-green" (click)="create()" [disabled]="createGroup.invalid">Create</button>
+        <button class="btn-red" (click)="reset()">Reset</button>
+    </form>
+</div>

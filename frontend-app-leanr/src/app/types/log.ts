@@ -9,7 +9,7 @@ export type log = {
     fuel_type: string
     odo: string
     location: string | null
-    vehicle_info: vehicle_info
+    vehicle_info: vehicle_info | null
     rud_url: string
 }
 

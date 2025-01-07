@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { createUserSchema, token } from '../types/createUser';
 import { log, logs } from '../types/log';
 import { LoggedInService } from './logged-in.service';
+import { user } from '../types/user';
+import { Observable } from 'rxjs';
+import { vehicle_info, vehicle_info_paginated } from '../types/vehicle_info';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +48,17 @@ export class RestApiService {
 
   deleteLog(url: string) {
     return this.request.delete(url)
+  }
+
+  getCurrentUser(): Observable<user> {
+    return this.request.get<user>(`${this.url}/auth/users/me/`)
+  }
+
+  getAllVehicles(): Observable<vehicle_info_paginated> {
+    return this.request.get<vehicle_info_paginated>(`${this.url}/vehicle/`)
+  }
+
+  createLog(logObj: any) {
+    return this.request.post<log>(`${this.url}/log/`, logObj)
   }
 }

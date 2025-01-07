@@ -19,7 +19,7 @@
             <td>{{item.fuel_type}}</td>
             <td>{{item.odo}}</td>
             <td>{{item.location}}</td>
-            <td>{{item.vehicle_info.reg_number}}</td>
+            <td>{{item.vehicle_info?.reg_number}}</td>
             <td><button [routerLink]="['/log', item.id]">View</button></td>
         </tr>
     }

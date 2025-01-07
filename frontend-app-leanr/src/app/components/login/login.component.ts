@@ -42,7 +42,7 @@ export class LoginComponent {
     } catch (err) {
       console.log(err)
     }
-    console.log(this.LoginForm.value)
+    // console.log(this.LoginForm.value)
   }
   reset() {
     this.LoginForm.reset()
